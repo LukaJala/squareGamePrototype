@@ -15,6 +15,14 @@ elapsedTime = 0.0
 dt = clock.tick(60) / 1000
 
 # CLASSES
+# Menu
+# Button attributes
+class button:
+    def __init__(self, x, y, color, w, h):
+        self.x, self.y = x, y
+        self.width, self.height = w, h
+        self.color = color
+    
 # Powerup attributes
 class powerUp:
     def __init__(self, sz, colA, colB, colC):
@@ -73,6 +81,32 @@ def drawPowerUps(powerUps):
             )
         )
 
+# menu
+
+menuRunning = True
+menuBGCol = (0,133,198)
+menuButtonCol = (6,190,220)
+menuButtonOutlineCol = (0,214,255)
+
+buttonWidth, buttonHeight = 200, 50
+
+while menuRunning:
+    screen.fill(menuBGCol)
+    pygame.display.update()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            menuRunning = False
+            menuSaidNo = True # If we quit on menu screen, makes sure that happens
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                print("enterpress")
+                menuSaidNo = False
+                menuRunning = False
+                continue
+
+
+# game set up
+
 # set up square guy
 
 myCharacter = character(50, 20, 20, 20)
@@ -95,16 +129,16 @@ yPos = spawnYPos
 ground = height - myCharacter.squareSz // 2
 ceiling = myCharacter.squareSz // 2
 
-running = True
+gameRunning = True
 
 pygame.display.update()
 
-while running:
+while gameRunning and not menuSaidNo:
     dt = clock.tick(120)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            gameRunning = False
         
         elif event.type == pygame.KEYDOWN:
 
@@ -112,7 +146,7 @@ while running:
 
             if event.key == pygame.K_ESCAPE:
                 print("GAME CLOSED")
-                running = False
+                gameRunning = False
 
             # JUMP MECHANIC
                 
@@ -197,6 +231,8 @@ pygame.quit()
 
 # TODO:
 """
+Add start page
+Add escape menu page
 Implement powerups
 Implement character dash ability
 Turn the action of drawing character, powerups, platforms in the future into FUNCTIONS
