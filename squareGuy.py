@@ -197,10 +197,7 @@ pygame.quit()
 
 # TODO:
 """
-Implement movement - DONE
-Implement gravity - DONE
-Implement flight mechanic - DONE
-Implement powerups -
+Implement powerups
 Implement character dash ability
 Turn the action of drawing character, powerups, platforms in the future into FUNCTIONS
 """
