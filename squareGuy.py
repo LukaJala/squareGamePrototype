@@ -201,3 +201,9 @@ Implement powerups
 Implement character dash ability
 Turn the action of drawing character, powerups, platforms in the future into FUNCTIONS
 """
+"""
+While you're new at this
+git add .
+git commit -m "msg"
+git push
+"""
